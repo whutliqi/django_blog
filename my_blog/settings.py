@@ -25,8 +25,9 @@ SECRET_KEY = '9ie#3g@vb(n=xstc!$#nv$1#0lz-e$1uivoif8&1oi-*1y*&@y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
+# 静态文件收集目录
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 # Application definition
 
