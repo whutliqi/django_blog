@@ -83,11 +83,12 @@ def article_create(request):
 # 提醒用户登录
 @login_required(login_url='/userprofile/login/')
 def article_safe_delete(request, id):
-    # 过滤非作者的用户
-    if request.user != article.author:
-        return HttpResponse("抱歉，你无权修改这篇文章。")
+    
     if request.method == 'POST':
         article = ArticlePost.objects.get(id=id)
+        # 过滤非作者的用户
+        if request.user != article.author:
+            return HttpResponse("抱歉，你无权修改这篇文章。")
         article.delete()
         return redirect("article:article_list")
     else:

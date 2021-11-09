@@ -19,7 +19,17 @@
                 <div>
                     作者：{{ article.author }}
                     {% if user == article.author %}
-                        · <a href="#" onclick="confirm_delete()">删除文章</a>
+                        · <a href="#" onclick="confirm_safe_delete()">删除文章</a>
+                        <!-- 新增一个隐藏的表单 -->
+                        <form 
+                        style="display:none;" 
+                        id="safe_delete"
+                        action="{% url 'article:article_safe_delete' article.id %}" 
+                        method="POST"
+                        >
+                            {% csrf_token %}
+                            <button type="submit">发送</button>
+                        </form>
                         · <a href="{% url "article:article_update" article.id %}">
                             编辑文章
                         </a>
@@ -38,16 +48,7 @@
                 {{ toc|safe }}
             </div>
         </div>
-        <!-- 新增一个隐藏的表单 -->
-        <form 
-        style="display:none;" 
-        id="safe_delete"
-        action="{% url 'article:article_safe_delete' article.id %}" 
-        method="POST"
-        >
-            {% csrf_token %}
-            <button type="submit">发送</button>
-        </form>
+        
 
         <div class="col-12">
             <p>{{ article.body|safe }}</p>
