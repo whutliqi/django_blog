@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('31415926535897932384626/', admin.site.urls),
 
     path('article/', include('article.urls', namespace='article')),
     # 用户管理
